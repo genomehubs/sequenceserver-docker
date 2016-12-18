@@ -19,7 +19,21 @@ WORKDIR /sequenceserver
 RUN bundle install
 RUN npm install
 
+RUN chmod -R a+w ./
+
 EXPOSE 4567
-ADD sequenceserver.conf /
-ADD startup.sh /
+COPY startup.sh /
+RUN mkdir /conf
+COPY sequenceserver.conf /conf/sequenceserver.conf
+COPY Masthead.html /conf/Masthead.html
+RUN sed -i '/<body>/ r /conf/Masthead.html' /sequenceserver/views/layout.erb
+RUN mkdir /sequenceserver/public/img
+COPY img/* /sequenceserver/public/img/
+COPY custom.css /conf/custom.css
+RUN cat /conf/custom.css >> /sequenceserver/public/css/sequenceserver.css
+RUN ln -s /usr/bin/nodejs /usr/bin/node
+
+RUN npm run-script build
+RUN gem build sequenceserver.gemspec
+
 CMD /startup.sh
