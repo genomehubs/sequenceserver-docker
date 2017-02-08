@@ -27,7 +27,7 @@ npm run-script build
 gem build sequenceserver.gemspec
 
 # start SequenceServer
-/usr/local/bin/bundle exec /sequenceserver/bin/sequenceserver -b /usr/bin -m $CONFIGFILE &
+/usr/local/bin/bundle exec /sequenceserver/bin/sequenceserver -b /usr/bin -m $CONFIGFILE && \
 /usr/local/bin/bundle exec /sequenceserver/bin/sequenceserver -b /usr/bin $CONFIGFILE &
 tail -f /dev/null
 
