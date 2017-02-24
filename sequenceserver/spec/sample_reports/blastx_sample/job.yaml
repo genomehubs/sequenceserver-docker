@@ -1,0 +1,9 @@
+--- !ruby/object:SequenceServer::BLAST::Job
+id: blastx_sample
+method: blastx
+advanced_params: {}
+
+databases:
+- !ruby/struct:SequenceServer::Database
+  name: "../database/sample/transcripts/Solenopsis_invicta/Sinvicta2-2-3.cdna.subset.fasta"
+  type: nucleotide
