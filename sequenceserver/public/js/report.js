@@ -937,11 +937,12 @@ var Report = React.createClass({
      * Fetch results.
      */
     fetch_results: function () {
+        fr = this.fetch_results;
         $.getJSON(location.pathname + '.json')
         .complete(_.bind(function (jqXHR) {
             switch (jqXHR.status) {
             case 202:
-                setTimeout(fetch_results, 5000);
+                setTimeout(fr, 5000);
                 break;
             case 200:
                 this.setState(jqXHR.responseJSON);
