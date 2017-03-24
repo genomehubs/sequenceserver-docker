@@ -33,6 +33,9 @@ RUN chown -R dockeruser /sequenceserver
 
 COPY startup.sh /
 COPY sequenceserver.conf /
+
+RUN mkdir /.sequenceserver && chmod a+w /.sequenceserver
+
 RUN chown -R dockeruser /startup.sh
 
 USER dockeruser
