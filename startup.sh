@@ -30,7 +30,7 @@ npm run-script build && bundle
 
 # start SequenceServer
 keys="$(for l in $(ls /dbs/*.fa); do printf " \n \n \n";done)"
-echo "$keys" | bundle exec bin/sequenceserver -b /usr/bin -m $CONFIGFILE &&
-bundle exec bin/sequenceserver -b /usr/bin $CONFIGFILE &
+echo "$keys" | bundle exec bin/sequenceserver -m $CONFIGFILE &&
+bundle exec bin/sequenceserver $CONFIGFILE &
 tail -f /dev/null
 

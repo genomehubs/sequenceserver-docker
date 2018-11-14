@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /
 
-RUN git clone https://github.com/wurmlab/sequenceserver -b feature/pr-332
+RUN git clone https://github.com/wurmlab/sequenceserver
 
 WORKDIR /sequenceserver
 
