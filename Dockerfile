@@ -19,6 +19,8 @@ RUN git clone https://github.com/wurmlab/sequenceserver
 
 WORKDIR /sequenceserver
 
+RUN gem install rake
+
 RUN gem install bundler && bundle && npm install
 
 COPY startup.sh /

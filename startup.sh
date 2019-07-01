@@ -9,6 +9,7 @@ fi
 if [ -s /conf/Masthead.html ]; then
   echo 'Adding Masthead'
   sed -i '/<body>/ r /conf/Masthead.html' views/layout.erb
+  sed -i 's/<body>/<body id="modified">/' views/layout.erb
 fi
 
 if [ -d /conf/img ]; then
