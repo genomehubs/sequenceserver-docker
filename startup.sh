@@ -1,6 +1,6 @@
 #!/bin/bash -i
 
-CONFIGFILE="-c /sequenceserver.conf"
+CONFIGFILE="-c /sequenceserver/sequenceserver.conf"
 
 if [ -s /conf/sequenceserver.conf ]; then
   CONFIGFILE="-c /conf/sequenceserver.conf"

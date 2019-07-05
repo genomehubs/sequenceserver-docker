@@ -13,17 +13,28 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         zlib1g-dev
 
-WORKDIR /
 
-RUN git clone https://github.com/wurmlab/sequenceserver
+RUN mkdir /sequenceserver
+
+RUN useradd -m sequenceserver && chown -R sequenceserver:sequenceserver /sequenceserver
+
+USER sequenceserver
+
+RUN mkdir -p /home/sequenceserver/.ruby
+
+ENV GEM_HOME /home/sequenceserver/.ruby
+
+ENV PATH $PATH:/home/sequenceserver/.ruby/bin
 
 WORKDIR /sequenceserver
 
-RUN gem install rake
+RUN git clone https://github.com/wurmlab/sequenceserver
 
-RUN gem install bundler && bundle && npm install
+WORKDIR /sequenceserver/sequenceserver
 
-COPY startup.sh /
-COPY sequenceserver.conf /
+RUN gem install bundler rake && bundle && npm install
 
-ENTRYPOINT /startup.sh
+COPY startup.sh /sequenceserver
+COPY sequenceserver.conf /sequenceserver
+
+ENTRYPOINT /sequenceserver/startup.sh
