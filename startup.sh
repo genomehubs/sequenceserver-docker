@@ -24,7 +24,7 @@ fi
 
 if [ -s /conf/links.rb ]; then
   echo 'Adding links'
-  cp /conf/links.rb /sequenceserver/lib/sequenceserver/links.rb
+  cp /conf/links.rb lib/sequenceserver/links.rb
 fi
 
 npm run-script build && bundle
